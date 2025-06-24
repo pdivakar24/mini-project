@@ -8,12 +8,12 @@ app = Flask(__name__)
 
 def extract_features(url):
     features = []
-    features.append(1 if re.search(r'(\d{1,3}\.){3}\d{1,3}', url) else 0)  # IP address
-    features.append(1 if len(url) > 75 else 0)                             # Long URL
-    features.append(1 if '@' in url else 0)                                # '@' symbol
-    features.append(1 if url.count('-') > 3 else 0)                        # Excessive '-'
-    features.append(1 if url.startswith('https') == False else 0)         # Not HTTPS
-    features.append(1 if re.search(r'(login|update|secure|account)', url.lower()) else 0)  # suspicious words
+    features.append(1 if re.search(r'(\d{1,3}\.){3}\d{1,3}', url) else 0)  
+    features.append(1 if len(url) > 75 else 0)                             
+    features.append(1 if '@' in url else 0)                                
+    features.append(1 if url.count('-') > 3 else 0)                        
+    features.append(1 if url.startswith('https') == False else 0)         
+    features.append(1 if re.search(r'(login|update|secure|account)', url.lower()) else 0)  
     return np.array([features])
 
 def predict_phishing(features):
@@ -25,7 +25,7 @@ def predict_phishing(features):
     prediction = 1 if probability >= 50 else 0
     return prediction, probability
 
-# HTML Template (same as before)
+
 template = '''
 <!DOCTYPE html>
 <html>
